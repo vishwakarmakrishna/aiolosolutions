@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       home: const AuthScreen(),
       theme: ThemeData(
         useMaterial3: true,
-        textTheme: GoogleFonts.robotoSlabTextTheme(),
+        textTheme: GoogleFonts.robotoTextTheme(),
       ),
     );
   }

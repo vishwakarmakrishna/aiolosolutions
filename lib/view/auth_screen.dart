@@ -142,143 +142,244 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
         children: [
-          Text(
-            'Login',
-            style: Theme.of(context).textTheme.headline2,
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          Stack(
-            alignment: Alignment.centerLeft,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(50),
-                    topRight: Radius.circular(50),
-                  ),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _emailField,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.person),
-                          hintText: 'Username',
-                          border: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    const Divider(
-                      color: Colors.grey,
-                      height: 1,
-                      thickness: 2,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _passwordField,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.lock),
-                          hintText: 'Password',
-                          border: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  width: 75,
-                  height: 50,
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        widget.bloc.login(
-                          email: _emailField.text,
-                          password: _passwordField.text,
-                        );
-                      }
-                    },
-                    icon: const Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 75.0),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.grey,
-                ),
-                onPressed: () {},
-                child: const Text('Forgot Password?'),
-              ),
+          const Positioned(
+            left: -20,
+            top: -100,
+            child: CircleCorlor(
+              color: Color(0xff2e3192),
             ),
           ),
-          const SizedBox(
-            height: 20,
+          const Positioned(
+            left: -100,
+            top: -20,
+            child: CircleCorlor(
+              color: Color(0xff2e3192),
+            ),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.red,
-                backgroundColor: Colors.white,
-                surfaceTintColor: Colors.white,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(32.0),
-                    bottomRight: Radius.circular(32.0),
+          const Positioned(
+            bottom: -20,
+            right: -130,
+            child: CircleCorlor(
+              color: Color(0xff014a7f),
+            ),
+          ),
+          const Positioned(
+            bottom: -130,
+            right: -20,
+            child: CircleCorlor(
+              color: Color(0xff014a7f),
+            ),
+          ),
+          Positioned.fill(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 50,
                   ),
-                ),
+                  Text(
+                    'Login',
+                    style: Theme.of(context).textTheme.headline2?.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Stack(
+                    alignment: Alignment.centerLeft,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(50),
+                            topRight: Radius.circular(50),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 5,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: _emailField,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                ),
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.person_outline,
+                                    color: Colors.black,
+                                  ),
+                                  hintText: 'Username',
+                                  hintStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  border: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  errorBorder: InputBorder.none,
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            const Divider(
+                              color: Colors.grey,
+                              height: 1,
+                              thickness: 2,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: _passwordField,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                ),
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.lock_outline_rounded,
+                                    color: Colors.black,
+                                  ),
+                                  hintText: 'Password',
+                                  hintStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  border: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  errorBorder: InputBorder.none,
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          width: 75,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                            color: Color(0xff02c1f6),
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                widget.bloc.login(
+                                  email: _emailField.text,
+                                  password: _passwordField.text,
+                                );
+                              }
+                            },
+                            icon: const Icon(
+                              Icons.trending_flat_sharp,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 75.0),
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.grey,
+                        ),
+                        onPressed: () {},
+                        child: const Text('Forgot Password?'),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        surfaceTintColor: Colors.white,
+                        elevation: 5,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(32.0),
+                            bottomRight: Radius.circular(32.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Padding(
+                        padding: EdgeInsets.only(
+                          right: 10.0,
+                        ),
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              onPressed: () {},
-              child: const Text('Register'),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CircleCorlor extends StatelessWidget {
+  const CircleCorlor({
+    Key? key,
+    required this.color,
+  }) : super(key: key);
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      width: 200,
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
       ),
     );
   }
